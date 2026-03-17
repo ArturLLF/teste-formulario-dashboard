@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 7%;
+    --foreground: 0 0% 100%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 222 47% 14%;
+    --muted-foreground: 240 4% 66%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 14%;
+    --input: 220 20% 14%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+
+    --surface-deep: 222 54% 5%;
+    --glow-primary: 221 83% 53%;
+    --purple: 262 83% 58%;
+    --purple-foreground: 0 0% 100%;
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 11%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 20% 14%;
+    --sidebar-ring: 221 83% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--glow-primary) / 0.15), transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .section-divider {
+    @apply w-full h-px bg-border;
+  }
+
+  .card-surface {
+    @apply bg-card border border-border rounded-lg;
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.4);
+  }
+
+  .card-surface-hover {
+    @apply card-surface transition-all duration-500;
+  }
+  .card-surface-hover:hover {
+    box-shadow: 0 12px 48px hsl(0 0% 0% / 0.5);
+    border-color: hsl(var(--border));
+    transform: translateY(-2px);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(221 83% 53%), hsl(217 91% 60%));
+  }
+
+  .btn-primary-glow {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, hsl(221 83% 53%), hsl(217 91% 60%));
+  }
+  .btn-primary-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(221 83% 58%), hsl(217 91% 65%));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-primary-glow:hover::after {
+    opacity: 1;
+  }
+
+  .input-underline {
+    @apply bg-transparent border-0 border-b border-border rounded-none px-0 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-colors duration-300;
+  }
+
+  .whatsapp-pill {
+    @apply fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full bg-card border border-border cursor-pointer transition-all duration-300;
+  }
+  .whatsapp-pill:hover {
+    @apply pr-6;
+    box-shadow: 0 0 24px hsl(var(--glow-primary) / 0.2);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
